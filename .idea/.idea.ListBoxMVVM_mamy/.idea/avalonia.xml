@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="ListBoxMVVM_mamy/App.axaml" value="ListBoxMVVM_mamy/ListBoxMVVM_mamy.csproj" />
+        <entry key="ListBoxMVVM_mamy/Views/MainWindow.axaml" value="ListBoxMVVM_mamy/ListBoxMVVM_mamy.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

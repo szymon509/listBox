@@ -1,0 +1,64 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:ListBoxMVVM_mamy.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="ListBoxMVVM_mamy.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="ListBoxMVVM_mamy"
+        >
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+    
+    <StackPanel Margin="20" Spacing="20" Orientation="Vertical">
+        <TextBlock Text="Moje gry planszowe" FontSize="20" Margin="0,0,0,20" />
+        <Grid ColumnDefinitions="*,*" RowDefinitions="Auto, Auto">
+            <ListBox ItemsSource="{Binding BoardGames }"
+                     SelectedItem="{Binding SelectedBoardGame}" Height="200">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <TextBlock Text="{Binding Title}"/>
+                            <TextBlock Text="(" />
+                            <TextBlock Text="{Binding Genre}"/>
+                            <TextBlock Text=")"/>
+                            <Button Content="Pokaż tytuł"
+                                    Command="{Binding DataContext.ShowTitleCommand}"/>
+                          
+                                    
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            
+            <Button Grid.Row="1" Margin="0,10,0,0" Content="Pokaż szczegóły"
+                    Command="{Binding ShowDetailsCommand}"
+                    HorizontalAlignment="Left"
+                    />
+            
+            <StackPanel Grid.Column="1" Grid.Row="0" Margin="10" Spacing="10">
+                <TextBlock Text="Szczegóły: " FontWeight="Bold" Foreground="Brown" FontSize="20" />
+                <TextBlock Text="{Binding SelectedBoardGame.Title}" />
+                <TextBlock Text="{Binding SelectedBoardGame.Genre}" />
+                <TextBlock Text="{Binding SelectedBoardGame.MinPlayers}" />
+                <TextBlock Text="{Binding SelectedBoardGame.MaxPlayers}" />
+                
+                <ProgressBar Minimum="1" Maximum="10" 
+                             Value="{Binding SelectedBoardGame.Rating}" 
+                             Height="20"
+                             Foreground="Brown"
+                             />
+            </StackPanel>
+            
+        </Grid>
+        
+        
+    </StackPanel>
+
+</Window>
